@@ -1,6 +1,5 @@
 //Secciones de las importaciones de las bibliotecas de Node
 
-
 const express = require('express');//El sevider de express
 const morgan = require('morgan');//Peticiones Http
 const body_parser = require('body-parser');//Comunicacion de los input

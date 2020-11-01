@@ -40,7 +40,7 @@ exports.NuevaPersona = (req, res, next) => {
     APE_PERSONA: req.body.APE_PERSONA,
     SEX_PERSONA: req.body.SEX_PERSONA,
     FEC_NACIMIENTO: req.body.FEC_NACIMIENTO,
-    EST_CIVIL: req.body.EST_CIVIL,
+    EST_CIVIL: req.body.EST_CIVIL
   };
   try {
     mysqlConect.query(sql, Pe_personas, function (error) {
@@ -95,5 +95,6 @@ exports.DeletePersona = (req, res, next) => {
     });
   } catch (error) {
     console.log(error);
+    next()
   }
 };
