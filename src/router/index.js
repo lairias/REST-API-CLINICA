@@ -2,70 +2,18 @@
 const express = require("express");
 const router = express.Router()
 
-const Mysql = require('../config/database')
+//secccion de controllers
+const {PER_TEL_COR_USU}= require('../controllers/PERSONA_tel_cor_usu')
+
+const {Login} = require('../controllers/Login')
+//fin de los controllers
+
 
 
 module.exports = function(){
 
-router.post('/persona',(req,res)=>{
-  
-console.log(req.body)
-const {
-ID_PERSONA, 
-FOT_PERSONA, 
-NOM_PERSONA, 
-APE_PERSONA,  
-SEX_PERSONA,     
-FEC_NACIMIENTO,  
-NUM_TELEFONO,  
-TIP_TELEFONO,  
-DES_TELEFONO,
-FEC_REGISTRO, 
-DES_CORREO, 
-DOM_CORREO,  
-NOM_USUARIO, 
-PAS_USUARIO,
-FEC_CREACION,
-TIP_USUARIO 
-
-} = req.body;
-
-
-const sql = `CALL INS_PERSONA_TE_CORR(
-'${ID_PERSONA}', 
-'${FOT_PERSONA}', 
-'${NOM_PERSONA}', 
-'${APE_PERSONA}',  
-'${SEX_PERSONA}',     
-'${FEC_NACIMIENTO}',  
-'${NUM_TELEFONO}',  
-'${TIP_TELEFONO}',  
-'${DES_TELEFONO}', 
-'${FEC_REGISTRO}', 
-'${DES_CORREO}', 
-'${DOM_CORREO}',  
-'${NOM_USUARIO}', 
-'${PAS_USUARIO}',
-'${FEC_CREACION}',
-'${TIP_USUARIO}'
-  );`;
-  console.log(sql)
-  
-  try {
-    Mysql.query(sql, function (error) {
-      if (!error) {
-        res.json({
-          message: "Persona creada",
-        });
-      }
-    });
-  } catch (erro) {
-    console.log(erro);
-    next();
-  }
-
-
-})
+router.post('/persona',PER_TEL_COR_USU);
+router.post("/login", Login);
 
   return router
 }
