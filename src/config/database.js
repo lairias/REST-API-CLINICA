@@ -5,10 +5,10 @@ const mysql = require('mysql');
 require('dotenv').config();
 
 const conexion = mysql.createConnection({
-  host: process.env.HOST,
-  user: process.env.USR_DB,
-  password: process.env.PASS_DB,
-  database: process.env.BASE_DB,
+  host: "http://3.80.201.140/",
+  user: "root",
+  password: "root",
+  database: "clinica_dental",
 });
 
 conexion.connect( (error)=>{
