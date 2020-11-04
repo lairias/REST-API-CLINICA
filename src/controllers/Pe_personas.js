@@ -1,5 +1,4 @@
 //Importacion de la base de datos
-const { query } = require("express");
 const mysqlConect = require("../config/database.js");
 
 ////////////////////////QUERY QUE OBTIENE TODAS LAS PERSONAS
@@ -39,8 +38,7 @@ exports.NuevaPersona = (req, res, next) => {
     NOM_PERSONA: req.body.NOM_PERSONA,
     APE_PERSONA: req.body.APE_PERSONA,
     SEX_PERSONA: req.body.SEX_PERSONA,
-    FEC_NACIMIENTO: req.body.FEC_NACIMIENTO,
-    EST_CIVIL: req.body.EST_CIVIL
+    FEC_NACIMIENTO: req.body.FEC_NACIMIENTO
   };
   try {
     mysqlConect.query(sql, Pe_personas, function (error) {
@@ -64,8 +62,7 @@ exports.UpdatePersona = async (req, res, next) => {
     NOM_PERSONA='${req.body.NOM_PERSONA}',
     APE_PERSONA='${req.body.APE_PERSONA}',
     SEX_PERSONA='${req.body.SEX_PERSONA}',
-    FEC_NACIMIENTO='${req.body.FEC_NACIMIENTO}',
-    EST_CIVIL='${req.body.EST_CIVIL}'
+    FEC_NACIMIENTO='${req.body.FEC_NACIMIENTO}'
     WHERE COD_PERSONA =${id}`;
 
   console.log(Query);

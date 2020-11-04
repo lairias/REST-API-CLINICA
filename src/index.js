@@ -19,11 +19,6 @@ app.set('port', process.env.PORT || 3000);//signamos un puerto al servidor
 
 //seccion de los middleware
 app.use(morgan('dev'));//usamos morgan para mostar las peticiones Http
-app.use(session({
-    secret:'secreto',
-    resave:true,
-    saveUninitialized:true
-}))
 app.use(Parser.urlencoded({extended:true}));
 app.use(body_parser.json())//Le decimos al servidor que trabaje en formato JSON
 app.use(body_parser.urlencoded({extended:true}));

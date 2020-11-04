@@ -32,7 +32,6 @@ exports.NuevoTelefono = async (req, res, next) => {
   const PE_TELEFONO = {
     NUM_TELEFONO: req.body.NUM_TELEFONO,
     TIP_TELEFONO: req.body.TIP_TELEFONO,
-    USR_TELEFNO: req.body.USR_TELEFNO,
     DES_TELEFONO: req.body.DES_TELEFONO,
     FEC_REGISTRO: req.body.FEC_REGISTRO,
   };
@@ -56,7 +55,6 @@ exports.UpdateTelefono = async (req, res, next) => {
   const {
     NUM_TELEFONO,
     TIP_TELEFONO,
-    USR_TELEFNO,
     DES_TELEFONO,
     FEC_REGISTRO,
   } = req.body;
@@ -64,7 +62,6 @@ exports.UpdateTelefono = async (req, res, next) => {
   const Query = `UPDATE PE_TELEFONO SET 
     NUM_TELEFONO='${NUM_TELEFONO}',
     TIP_TELEFONO='${TIP_TELEFONO}',
-    USR_TELEFNO ='${USR_TELEFNO}',
     DES_TELEFONO ='${DES_TELEFONO}',
     FEC_REGISTRO = '${FEC_REGISTRO}'
     WHERE COD_TELEFONO = '${id}'
