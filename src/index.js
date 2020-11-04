@@ -5,6 +5,7 @@ const morgan = require('morgan');//Peticiones Http
 const body_parser = require('body-parser');//Comunicacion de los input
 const Router = require('./router')//Archivo de las rutas 
 const Parser = require('body-parser')
+const cors = require('cors')
 const app = express();//Almacenamos el servidor en una variable
 
 
@@ -15,7 +16,7 @@ const app = express();//Almacenamos el servidor en una variable
 app.set('port', process.env.PORT || 3000);//signamos un puerto al servidor
 //Fin de los Ajustes
 
-
+app.use(cors())
 //seccion de los middleware
 app.use(morgan('dev'));//usamos morgan para mostar las peticiones Http
 app.use(Parser.urlencoded({extended:true}));
