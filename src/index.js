@@ -5,7 +5,6 @@ const morgan = require('morgan');//Peticiones Http
 const body_parser = require('body-parser');//Comunicacion de los input
 const Router = require('./router')//Archivo de las rutas 
 const Parser = require('body-parser')
-const session = require('express-session')
 const app = express();//Almacenamos el servidor en una variable
 
 
@@ -20,7 +19,7 @@ app.set('port', process.env.PORT || 3000);//signamos un puerto al servidor
 //seccion de los middleware
 app.use(morgan('dev'));//usamos morgan para mostar las peticiones Http
 app.use(Parser.urlencoded({extended:true}));
-app.use(body_parser.json())//Le decimos al servidor que trabaje en formato JSON
+app.use(express.json())//Le decimos al servidor que trabaje en formato JSON
 app.use(body_parser.urlencoded({extended:true}));
 //Fin de los middlewares
 

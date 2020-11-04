@@ -5,7 +5,7 @@ const mysql = require('mysql');
 require('dotenv').config();
 
 const conexion = mysql.createConnection({
-  host: "http://3.80.201.140/",
+  host: "localhost",
   user: "root",
   password: "root",
   database: "clinica_dental",

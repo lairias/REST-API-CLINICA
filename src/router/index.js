@@ -39,7 +39,7 @@ module.exports = function () {
   router.get("/personas", InfoPersonas);
   router.put("/persona/:id", UpdatePersona);
   router.get("/persona/:id", Infopersona);
-  router.post("/persona", NuevaPersona);
+  // router.post("/persona", NuevaPersona);
   router.delete("/persona/:id", DeletePersona);
   //FIn de rutas de Pe_personas
 

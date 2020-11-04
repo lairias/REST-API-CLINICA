@@ -7,7 +7,8 @@ exports.InfoPersonas = async (req, res, next) => {
     await mysqlConect.query(
       "SELECT * from PE_PERSONAS",
       (err, rows, fields) => {
-        res.json(rows);
+        console.log(rows)
+        res.send(rows);
       }
     );
   } catch (error) {
