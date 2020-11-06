@@ -13,7 +13,7 @@ const app = express();//Almacenamos el servidor en una variable
 
 
 //seccion de los ajustes
-app.set('port', process.env.PORT || 3000);//signamos un puerto al servidor
+app.set('port', process.env.PORT || 5000);//signamos un puerto al servidor
 //Fin de los Ajustes
 
 app.use(cors())

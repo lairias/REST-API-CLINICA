@@ -54,8 +54,8 @@ exports.PER_TEL_COR_USU = (req, res, next) =>
     try
     {
         Mysql.query(
-            "select * from PE_USUARIOS WHERE NOM_USUARIO = ?",
-            [NOM_USUARIO],
+            `select * from pe_usuarios  WHERE NOM_USUARIO = '${NOM_USUARIO}'`,
+          
             (err, row, fledns) =>
             {
                 if (JSON.stringify(row).length === 2)

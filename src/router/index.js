@@ -32,14 +32,14 @@ const {
 
 module.exports = function () {
   //RUTA registro
-  router.post("/persona", PER_TEL_COR_USU);
+  router.post("/personaTEL", PER_TEL_COR_USU);
   //RUTA login
   router.post("/login", Login);
   //RUTA personas
   router.get("/personas", InfoPersonas);
   router.put("/persona/:id", UpdatePersona);
   router.get("/persona/:id", Infopersona);
-  // router.post("/persona", NuevaPersona);
+  router.post("/persona", NuevaPersona);
   router.delete("/persona/:id", DeletePersona);
   //FIn de rutas de Pe_personas
 

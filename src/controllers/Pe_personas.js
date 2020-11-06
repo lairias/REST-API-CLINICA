@@ -1,3 +1,5 @@
+
+
 //Importacion de la base de datos
 const mysqlConect = require("../config/database.js");
 
@@ -5,7 +7,7 @@ const mysqlConect = require("../config/database.js");
 exports.InfoPersonas = async (req, res, next) => {
   try {
     await mysqlConect.query(
-      "SELECT * from 'pe_personas'",
+      "SELECT * FROM pe_personas",
       (err, rows, fields) => {
         console.log(rows)
         res.send(rows);
@@ -20,8 +22,9 @@ exports.InfoPersonas = async (req, res, next) => {
 exports.Infopersona = async (req, res, next) => {
   try {
     const { id } = req.params;
+console.log(id);
     await mysqlConect.query(
-      `SELECT * FROM 'pe_personas'  WHERE 'COD_PERSONA' ='${id}' `,
+      "SELECT * FROM `pe_personas` WHERE COD_PERSONA ="+id,
       (err, rows, fields) => {
         res.json(rows);
       }
@@ -32,16 +35,22 @@ exports.Infopersona = async (req, res, next) => {
 };
 ////////////////////////QUERY QUE CREA UNA PERSONA
 exports.NuevaPersona = (req, res, next) => {
-  const Pe_personas = {
-    'ID_PERSONA': req.body.ID_PERSONA,
-    'NOM_PERSONA': req.body.NOM_PERSONA,
-    'APE_PERSONA': req.body.APE_PERSONA,
-    'SEX_PERSONA': req.body.SEX_PERSONA,
-    'FEC_NACIMIENTO': req.body.FEC_NACIMIENTO
-  };
-  const sql = `INSERT INTO 'pe_personas' SET ?`;
+    const  {
+     ID_PERSONA,
+    FOT_PERSONA,
+    NOM_PERSONA,
+    APE_PERSONA,
+    SEX_PERSONA,
+    FEC_NACIMIENTO
+  } = req.body;
+  console.log(req.body)
+const sql = `INSERT INTO pe_personas(ID_PERSONA,FOT_PERSONA,NOM_PERSONA,APE_PERSONA,SEX_PERSONA,FEC_NACIMIENTO) VALUES('${ID_PERSONA}','${FOT_PERSONA}','${NOM_PERSONA}','${APE_PERSONA}','${SEX_PERSONA}','${FEC_NACIMIENTO}')`;
+
+
+  console.log(sql)
+console.log(sql);
   try {
-    mysqlConect.query(sql, Pe_personas, function (error) {
+    mysqlConect.query(sql, function (error) {
       if (!error) {
         res.json({
           message: "Persona creada",
@@ -55,15 +64,27 @@ exports.NuevaPersona = (req, res, next) => {
 };
 ////////////////////////QUERY QUE ACTULIZA UNA PERSONA
 exports.UpdatePersona = async (req, res, next) => {
+ 
+  const {
+    ID_PERSONA,
+    FOT_PERSONA,
+    NOM_PERSONA,
+    APE_PERSONA,
+    SEX_PERSONA,
+    FEC_NACIMIENTO,
+  } = req.body;
   const { id } = req.params;
 
-  const Query = `UPDATE 'pe_personas' SET 
-    ID_PERSONA='${req.body.ID_PERSONA}',
-    NOM_PERSONA='${req.body.NOM_PERSONA}',
-    APE_PERSONA='${req.body.APE_PERSONA}',
-    SEX_PERSONA='${req.body.SEX_PERSONA}',
-    FEC_NACIMIENTO='${req.body.FEC_NACIMIENTO}'
-    WHERE 'COD_PERSONA' =${id}`;
+  
+  const Query = `UPDATE pe_personas SET 
+    ID_PERSONA='${ID_PERSONA}',
+    FOT_PERSONA = '${FOT_PERSONA}',
+    NOM_PERSONA='${NOM_PERSONA}',
+    APE_PERSONA='${APE_PERSONA}',
+    SEX_PERSONA='${SEX_PERSONA}',
+    FEC_NACIMIENTO='${FEC_NACIMIENTO}'
+    WHERE COD_PERSONA ='${id}'`;
+
 
   console.log(Query);
   try {
@@ -82,7 +103,7 @@ exports.UpdatePersona = async (req, res, next) => {
 ////////////////////////QUERY QUE ELIMINA UNA PERSONA
 exports.DeletePersona = (req, res, next) => {
   const { id } = req.params;
-  const query = `DELETE FROM 'pe_personas' WHERE 'COD_PERSONA' = ${id}`;
+  const query = `DELETE FROM pe_personas WHERE COD_PERSONA = '${id}'`;
   console.log(query);
   try {
     mysqlConect.query(query, (error) => {
