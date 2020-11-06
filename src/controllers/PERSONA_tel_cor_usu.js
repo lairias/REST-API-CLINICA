@@ -48,6 +48,8 @@ exports.PER_TEL_COR_USU = (req, res, next) =>
 '${TIP_USUARIO}'
   );`;
 
+  console.log(sql)
+
     //Creamos un TRY CATCH para potejer la conexion de error de la base de datos
     try
     {

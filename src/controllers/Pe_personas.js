@@ -5,7 +5,7 @@ const mysqlConect = require("../config/database.js");
 exports.InfoPersonas = async (req, res, next) => {
   try {
     await mysqlConect.query(
-      "SELECT * from PE_PERSONAS",
+      "SELECT * from 'pe_personas'",
       (err, rows, fields) => {
         console.log(rows)
         res.send(rows);
@@ -21,8 +21,7 @@ exports.Infopersona = async (req, res, next) => {
   try {
     const { id } = req.params;
     await mysqlConect.query(
-      "SELECT * FROM PE_PERSONAS WHERE COD_PERSONA = ?",
-      [id],
+      `SELECT * FROM 'pe_personas'  WHERE 'COD_PERSONA' ='${id}' `,
       (err, rows, fields) => {
         res.json(rows);
       }
@@ -33,14 +32,14 @@ exports.Infopersona = async (req, res, next) => {
 };
 ////////////////////////QUERY QUE CREA UNA PERSONA
 exports.NuevaPersona = (req, res, next) => {
-  const sql = "INSERT INTO PE_PERSONAS SET ?";
   const Pe_personas = {
-    ID_PERSONA: req.body.ID_PERSONA,
-    NOM_PERSONA: req.body.NOM_PERSONA,
-    APE_PERSONA: req.body.APE_PERSONA,
-    SEX_PERSONA: req.body.SEX_PERSONA,
-    FEC_NACIMIENTO: req.body.FEC_NACIMIENTO
+    'ID_PERSONA': req.body.ID_PERSONA,
+    'NOM_PERSONA': req.body.NOM_PERSONA,
+    'APE_PERSONA': req.body.APE_PERSONA,
+    'SEX_PERSONA': req.body.SEX_PERSONA,
+    'FEC_NACIMIENTO': req.body.FEC_NACIMIENTO
   };
+  const sql = `INSERT INTO 'pe_personas' SET ?`;
   try {
     mysqlConect.query(sql, Pe_personas, function (error) {
       if (!error) {
@@ -58,13 +57,13 @@ exports.NuevaPersona = (req, res, next) => {
 exports.UpdatePersona = async (req, res, next) => {
   const { id } = req.params;
 
-  const Query = `UPDATE PE_PERSONAS SET 
+  const Query = `UPDATE 'pe_personas' SET 
     ID_PERSONA='${req.body.ID_PERSONA}',
     NOM_PERSONA='${req.body.NOM_PERSONA}',
     APE_PERSONA='${req.body.APE_PERSONA}',
     SEX_PERSONA='${req.body.SEX_PERSONA}',
     FEC_NACIMIENTO='${req.body.FEC_NACIMIENTO}'
-    WHERE COD_PERSONA =${id}`;
+    WHERE 'COD_PERSONA' =${id}`;
 
   console.log(Query);
   try {
@@ -83,7 +82,7 @@ exports.UpdatePersona = async (req, res, next) => {
 ////////////////////////QUERY QUE ELIMINA UNA PERSONA
 exports.DeletePersona = (req, res, next) => {
   const { id } = req.params;
-  const query = `DELETE FROM PE_PERSONAS WHERE COD_PERSONA = ${id}`;
+  const query = `DELETE FROM 'pe_personas' WHERE 'COD_PERSONA' = ${id}`;
   console.log(query);
   try {
     mysqlConect.query(query, (error) => {

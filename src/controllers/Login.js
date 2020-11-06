@@ -11,7 +11,7 @@ exports.Login=  (req,res,next)=>{
    
 try{
 
-     Mysql.query(`SELECT * FROM PE_USUARIOS WHERE NOM_USUARIO = '${req.body.NOM_USUARIO}'`,(err ,user,field)=>{
+     Mysql.query(`SELECT * FROM 'pe_usuario' WHERE 'NOM_USUARIO' = '${req.body.NOM_USUARIO}'`,(err ,user,field)=>{
          if(user.length>0){
              console.log(user[0])
              if(MachCrip(req.body.PAS_USUARIO,user[0].PAS_USUARIO)){

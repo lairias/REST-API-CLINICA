@@ -1,7 +1,7 @@
 const Mysql = require("../config/database.js");
 ////////////////////////QUERY QUE OBTINE TODOS LOS TELEFONOS
 exports.Telefonos = async (req, res, next) => {
-  const sql = "SELECT * FROM PE_TELEFONO";
+  const sql = "SELECT * FROM 'pe_telefono'";
   try {
     await Mysql.query(sql, (error, rows, fils) => {
       res.json(rows);
@@ -14,10 +14,10 @@ exports.Telefonos = async (req, res, next) => {
 ////////////////////////QUERY QUE OBTINE UN TELEFONO
 exports.Telefono = async (req, res, next) => {
   const { id } = req.params;
-  const slq = `SELECT * FROM PE_TELEFONO WHERE COD_TELEFONO = ?`;
+  const slq = `SELECT * FROM 'pe_telefono'  WHERE 'COD_TELEFONO' ='${id}'`;
 
   try {
-    await Mysql.query(slq, [id], (error, rows, fils) => {
+    await Mysql.query(slq, (error, rows, fils) => {
       res.json(rows);
     });
   } catch (error) {
@@ -27,13 +27,13 @@ exports.Telefono = async (req, res, next) => {
 };
 ////////////////////////QUERY QUE CREAR  UN TELEFONO
 exports.NuevoTelefono = async (req, res, next) => {
-  const sql = "INSERT INTO PE_TELEFONO SET ?";
+  const sql = "INSERT INTO 'pe_telefono' SET ?";
 
   const PE_TELEFONO = {
-    NUM_TELEFONO: req.body.NUM_TELEFONO,
-    TIP_TELEFONO: req.body.TIP_TELEFONO,
-    DES_TELEFONO: req.body.DES_TELEFONO,
-    FEC_REGISTRO: req.body.FEC_REGISTRO,
+    'NUM_TELEFONO': req.body.NUM_TELEFONO,
+    'TIP_TELEFONO': req.body.TIP_TELEFONO,
+    'DES_TELEFONO': req.body.DES_TELEFONO,
+    'FEC_REGISTRO': req.body.FEC_REGISTRO,
   };
   console.log(PE_TELEFONO);
 
@@ -59,12 +59,12 @@ exports.UpdateTelefono = async (req, res, next) => {
     FEC_REGISTRO,
   } = req.body;
 
-  const Query = `UPDATE PE_TELEFONO SET 
-    NUM_TELEFONO='${NUM_TELEFONO}',
-    TIP_TELEFONO='${TIP_TELEFONO}',
-    DES_TELEFONO ='${DES_TELEFONO}',
-    FEC_REGISTRO = '${FEC_REGISTRO}'
-    WHERE COD_TELEFONO = '${id}'
+  const Query = `UPDATE 'pe_telefono' SET 
+    'NUM_TELEFONO'='${NUM_TELEFONO}',
+    'TIP_TELEFONO'='${TIP_TELEFONO}',
+    'DES_TELEFONO' ='${DES_TELEFONO}',
+    'FEC_REGISTRO' = '${FEC_REGISTRO}'
+    WHERE 'COD_TELEFONO' = '${id}'
     `;
   try {
     await Mysql.query(Query, (error) => {
@@ -81,7 +81,7 @@ exports.UpdateTelefono = async (req, res, next) => {
 exports.DeleteTelefono = async (req, res, next) => {
   const { id } = req.params;
   const Query = `
-    DELETE FROM PE_TELEFONO WHERE COD_TELEFONO = ${id}
+    DELETE FROM 'pe_telefono'  WHERE COD_TELEFONO = ${id}
     `;
   try {
     await Mysql.query(Query, (error) => {
