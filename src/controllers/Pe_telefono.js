@@ -1,5 +1,4 @@
 const Mysql = require("../config/database.js");
-////////////////////////QUERY QUE OBTINE TODOS LOS TELEFONOS
 exports.Telefonos = async (req, res, next) => {
   const sql = "SELECT * FROM pe_telefono";
   try {
@@ -11,7 +10,6 @@ exports.Telefonos = async (req, res, next) => {
     next();
   }
 };
-////////////////////////QUERY QUE OBTINE UN TELEFONO
 exports.Telefono = async (req, res, next) => {
   const { id } = req.params;
   const slq = `SELECT * FROM pe_telefono  WHERE COD_TELEFONO ='${id}'`;
@@ -25,18 +23,11 @@ exports.Telefono = async (req, res, next) => {
     next();
   }
 };
-////////////////////////QUERY QUE CREAR  UN TELEFONO
 exports.NuevoTelefono = async (req, res, next) => {
-    const {
-    NUM_TELEFONO,
-    TIP_TELEFONO,
-    DES_TELEFONO,
-    FEC_REGISTRO,
-  } = req.body;
-    const sql = `INSERT INTO pe_telefono(NUM_TELEFONO,TIP_TELEFONO,DES_TELEFONO,FEC_REGISTRO)
+  const { NUM_TELEFONO, TIP_TELEFONO, DES_TELEFONO, FEC_REGISTRO } = req.body;
+  const sql = `INSERT INTO pe_telefono(NUM_TELEFONO,TIP_TELEFONO,DES_TELEFONO,FEC_REGISTRO)
     VALUES('${NUM_TELEFONO}','${TIP_TELEFONO}','${DES_TELEFONO}','${FEC_REGISTRO}')`;
-
-console.log(sql);
+  console.log(sql);
   try {
     await Mysql.query(sql, function (error) {
       if (!error) {
@@ -48,17 +39,10 @@ console.log(sql);
     next();
   }
 };
-
-////////////////////////QUERY QUE ACTUALIZAR UN TELEFONO
 exports.UpdateTelefono = async (req, res, next) => {
   const { id } = req.params;
-  const {
-    NUM_TELEFONO,
-    TIP_TELEFONO,
-    DES_TELEFONO,
-    FEC_REGISTRO,
-  } = req.body;
- const Query = `UPDATE pe_telefono SET 
+  const { NUM_TELEFONO, TIP_TELEFONO, DES_TELEFONO, FEC_REGISTRO } = req.body;
+  const Query = `UPDATE pe_telefono SET 
     NUM_TELEFONO='${NUM_TELEFONO}',
     TIP_TELEFONO='${TIP_TELEFONO}',
      DES_TELEFONO ='${DES_TELEFONO}',
@@ -66,9 +50,9 @@ exports.UpdateTelefono = async (req, res, next) => {
     WHERE 'COD_TELEFONO' = '${id}'
     `;
 
-console.log(Query);
-console.log(id);
-   try {
+  console.log(Query);
+  console.log(id);
+  try {
     await Mysql.query(Query, (error) => {
       if (!error) {
         res.json("Actualizado");
@@ -79,7 +63,6 @@ console.log(id);
     next();
   }
 };
-////////////////////////QUERY QUE ELIMINAR UN TELEFONO
 exports.DeleteTelefono = async (req, res, next) => {
   const { id } = req.params;
   const Query = `

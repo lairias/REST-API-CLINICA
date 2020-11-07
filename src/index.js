@@ -1,33 +1,16 @@
-//Secciones de las importaciones de las bibliotecas de Node
-
-const express = require('express');//El sevider de express
-const morgan = require('morgan');//Peticiones Http
-const body_parser = require('body-parser');//Comunicacion de los input
-const Router = require('./router')//Archivo de las rutas 
-const Parser = require('body-parser')
-const cors = require('cors')
-const app = express();//Almacenamos el servidor en una variable
-
-
-//Fin de las secciones de las importaciones
-
-
-//seccion de los ajustes
-app.set('port', process.env.PORT || 5000);//signamos un puerto al servidor
-//Fin de los Ajustes
-
-app.use(cors())
-//seccion de los middleware
-app.use(morgan('dev'));//usamos morgan para mostar las peticiones Http
+require('@babel/polyfill')
+const express = require('express');
+const morgan = require('morgan');
+const body_parser = require('body-parser');
+const Router = require('./router');
+const Parser = require('body-parser');const cors = require('cors');
+const app = express();
+app.set('port', process.env.PORT || 5000);
+app.use(cors());
+app.use(morgan('dev'));
 app.use(Parser.urlencoded({extended:true}));
-app.use(express.json())//Le decimos al servidor que trabaje en formato JSON
+app.use(express.json());
 app.use(body_parser.urlencoded({extended:true}));
-//Fin de los middlewares
-
-//Seccion de las router
-app.use('/',Router());//Usamos las Rutas que creamos
-//fin de los Routers
-
-//seccion de las exportacione
-app.listen(app.set('port'),console.log(app.get('port')))//Le decimos al servidor en que puerto nos escuche
+app.use('/',Router());
+app.listen(app.set('port'),console.log(app.get('port')));
 

@@ -1,16 +1,7 @@
-//Seccion de las importaciones
 const Mysql = require('../config/database');
-//fin de las seccion de las importaciones
 const { MachCrip } = require("../lib/Encript.js");
-
-//seccion de los controllers
-
 exports.Login=  (req,res,next)=>{
-
-    
-   
 try{
-
      Mysql.query(`SELECT * FROM 'pe_usuario' WHERE 'NOM_USUARIO' = '${req.body.NOM_USUARIO}'`,(err ,user,field)=>{
          if(user.length>0){
              console.log(user[0])
@@ -28,5 +19,4 @@ try{
     console.log(error);
     next();
 }
-
 }
