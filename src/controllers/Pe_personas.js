@@ -1,5 +1,5 @@
 const mysqlConect = require("../config/database.js");
-exports.InfoPersonas = async (req, res, next) => {
+exports.Personas = async (req, res, next) => {
   try {
     await mysqlConect.query(
       "SELECT * FROM pe_personas",
@@ -13,7 +13,7 @@ exports.InfoPersonas = async (req, res, next) => {
     next();
   }
 };
-exports.Infopersona = async (req, res, next) => {
+exports.Persona = async (req, res, next) => {
   try {
     const { id } = req.params;
     console.log(id);
@@ -27,7 +27,7 @@ exports.Infopersona = async (req, res, next) => {
     console.log(error);
   }
 };
-exports.NuevaPersona = (req, res, next) => {
+exports.NewPersona = (req, res, next) => {
   const {
     ID_PERSONA,
     FOT_PERSONA,
@@ -53,7 +53,7 @@ exports.NuevaPersona = (req, res, next) => {
     next();
   }
 };
-exports.UpdatePersona = async (req, res, next) => {
+exports.UpPersona = async (req, res, next) => {
   const {
     ID_PERSONA,
     FOT_PERSONA,

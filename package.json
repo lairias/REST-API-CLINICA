@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./dist/index.js ",
+    "start": "nodemon ./src/index.js ",
     "babel-node": "babel-node src/index.js",
     "build": "babel src --out-dir dist ",
     "web": "webpack"
@@ -13,10 +13,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@babel/cli": "^7.12.1",
-    "@babel/core": "^7.12.3",
-    "@babel/polyfill": "^7.12.1",
-    "@babel/preset-env": "^7.12.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -26,6 +22,10 @@
     "mysql": "^2.18.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
     "babel-loader": "^8.1.0",
     "nodemon": "^2.0.6"
   }

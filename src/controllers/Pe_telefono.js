@@ -23,7 +23,7 @@ exports.Telefono = async (req, res, next) => {
     next();
   }
 };
-exports.NuevoTelefono = async (req, res, next) => {
+exports.NewTelefono = async (req, res, next) => {
   const { NUM_TELEFONO, TIP_TELEFONO, DES_TELEFONO, FEC_REGISTRO } = req.body;
   const sql = `INSERT INTO pe_telefono(NUM_TELEFONO,TIP_TELEFONO,DES_TELEFONO,FEC_REGISTRO)
     VALUES('${NUM_TELEFONO}','${TIP_TELEFONO}','${DES_TELEFONO}','${FEC_REGISTRO}')`;
@@ -39,7 +39,7 @@ exports.NuevoTelefono = async (req, res, next) => {
     next();
   }
 };
-exports.UpdateTelefono = async (req, res, next) => {
+exports.UpTelefono = async (req, res, next) => {
   const { id } = req.params;
   const { NUM_TELEFONO, TIP_TELEFONO, DES_TELEFONO, FEC_REGISTRO } = req.body;
   const Query = `UPDATE pe_telefono SET 
