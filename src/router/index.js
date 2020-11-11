@@ -16,7 +16,6 @@ const {Medicos,Medico,NewMedico, UpMedico,DeleteMedico}=require('../controllers/
 const {Pacientes,Paciente,NewPaciente, UpPaciente,DeletePaciente}=require('../controllers/Pe_paciente');
 const {Usuarios,Usuario,NewUsuario, UpUsuario,DeleteUsuario}=require('../controllers/Pe_usuarios');
 const {Salas,Sala,NewSala, UpSala,DeleteSala}=require('../controllers/Sa_sala');
-/**Fin de los controladores  */
 module.exports = function () {
   router.post("/personaTEL", PER_TEL_COR_USU);
  router.post("/login", Login);
@@ -80,28 +79,21 @@ router.get("/persona", Personas);
         router.post('/usuario',NewUsuario);
         router.put('/usuario/:id',UpUsuario);
         router.delete('/usuario/:id',DeleteUsuario);
-
   router.get('/sala',Salas);
         router.get('/sala/:id',Sala);
         router.post('/sala',NewSala);
         router.put('/sala/:id',UpSala);
         router.delete('/sala/:id',DeleteSala);
-
   router.get('/medico',Medicos);
         router.get('/medico/:id',Medico);
         router.post('/medico',NewMedico);
         router.put('/medico/:id',UpMedico);
         router.delete('/medico/:id',DeleteMedico);
-        
   router.get('/paciente',Pacientes);
         router.get('/paciente/:id',Paciente);
         router.post('/paciente',NewPaciente);
         router.put('/paciente/:id',UpPaciente);
         router.delete('/paciente/:id',DeletePaciente);
-        
-
-
   return router;
-
 };
 
